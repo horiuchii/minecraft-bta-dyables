@@ -1,0 +1,28 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "horiuchi.dyables.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "BlockLogicBedMixin",
+    "BlockLogicBookshelfPaintableMixin",
+    "BlockLogicDoorMixin",
+    "BlockLogicDoorPaintedMixin",
+    "BlockLogicGlassPaintableMixin",
+    "BlockLogicSeatMixin",
+    "BlockLogicTrapDoorMixin",
+    "BlockLogicTrapDoorPaintedMixin",
+    "BlockLogicWorkbenchMixin",
+    "CreativeMenuMixin",
+    "ItemBedMixin",
+    "ItemSetLanguageKeyMixin",
+    "MenuCraftingMixin"
+  ],
+  "client": [
+    "BlockModelBedMixin",
+    "BlockModelSeatMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

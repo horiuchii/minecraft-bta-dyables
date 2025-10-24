@@ -1,33 +1,51 @@
 {
-	"schemaVersion": 1,
-	"id": "examplemod",
-	"version": "${version}",
-	"name": "Example Mod",
-	"description": "This mod aims to help new BTA modders.",
-	"authors": [
-		"Turnip Labs"
-	],
-	"contact": {
-		"homepage": "",
-		"sources": ""
-	},
+  "schemaVersion": 1,
+  "id": "dyables",
+  "version": "${version}",
+
+  "name": "Extra Dyables",
+  "description": "Adds dyed variants to the bookshelf, workbench, glass, seat, and bed.",
+  "authors": [
+    "Horiuchi"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
 	"icon": "icon.png",
-	"license": "CC0-1.0",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"turniplabs.examplemod.ExampleMod"
+  "license": "CC0-1.0",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+			"horiuchi.dyables.DyablesMod"
+    ],
+		"beforeGameStart": [
+			"horiuchi.dyables.DyablesMod"
+		],
+		"afterGameStart": [
+			"horiuchi.dyables.DyablesMod"
+		],
+		"recipesReady": [
+			"horiuchi.dyables.DyablesMod"
+		],
+		"initModels": [
+			"horiuchi.dyables.DyablesModels"
+		],
+		"afterBlockInit": [
+			"horiuchi.dyables.DyablesBlocks"
 		]
 	},
-	"mixins": [
-		"examplemod.mixins.json"
-	],
-	"depends": {
-		"fabricloader": ">=${fabricloader}",
+  "mixins": [
+      "dyables.mixins.json"
+  ],
+
+  "depends": {
 		"minecraft": "*",
-		"java": ">=${java}"
+    "fabricloader": ">=0.15.5",
+		"halplibe": ">=5.2.4"
 	},
-	"suggests": {
-		"modmenu": ">=${modmenu}"
-	}
+  "suggests": {
+  }
 }
