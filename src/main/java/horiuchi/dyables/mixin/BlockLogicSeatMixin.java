@@ -1,9 +1,6 @@
 package horiuchi.dyables.mixin;
 
-import net.minecraft.core.block.Block;
-import net.minecraft.core.block.BlockLogic;
-import net.minecraft.core.block.BlockLogicSeat;
-import net.minecraft.core.block.IPainted;
+import net.minecraft.core.block.*;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.block.entity.TileEntitySeat;
 import net.minecraft.core.block.material.Material;
@@ -30,7 +27,7 @@ public abstract class BlockLogicSeatMixin extends BlockLogic implements IPainted
 	}
 
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int meta, TileEntity tileEntity) {
-		return dropCause != EnumDropCause.IMPROPER_TOOL ? new ItemStack[]{new ItemStack(Items.SEAT, 15, meta)} : null;
+		return dropCause != EnumDropCause.IMPROPER_TOOL ? new ItemStack[]{new ItemStack(Items.SEAT, 1, meta)} : null;
 	}
 
 	@Override
