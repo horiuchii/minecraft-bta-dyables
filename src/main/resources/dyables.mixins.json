@@ -15,6 +15,7 @@
     "BlockLogicWorkbenchMixin",
     "CreativeMenuMixin",
     "ItemBedMixin",
+    "ItemPlaceableMixin",
     "ItemSetLanguageKeyMixin",
     "MenuCraftingMixin"
   ],
