@@ -1,0 +1,7 @@
+{
+	"renderlayer": 1,
+	"parent": "minecraft:block/door/top_left",
+	"textures": {
+		"top": "dyables:block/glass/green/down"
+	}
+}

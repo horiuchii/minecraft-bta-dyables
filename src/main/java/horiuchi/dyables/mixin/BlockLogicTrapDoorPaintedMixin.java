@@ -4,46 +4,45 @@ import horiuchi.dyables.DyablesBlocks;
 import net.minecraft.core.block.*;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.block.material.Material;
+import net.minecraft.core.block.material.Materials;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.DyeColor;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(BlockLogicTrapDoorPainted.class)
 public class BlockLogicTrapDoorPaintedMixin extends BlockLogicTrapDoor implements IPainted {
-	public BlockLogicTrapDoorPaintedMixin(Block<?> block, Material material) {
+	public BlockLogicTrapDoorPaintedMixin(@NotNull Block<?> block, @NotNull Material material) {
 		super(block, material);
 	}
 
 	@Override
-	public String getLanguageKey(int meta) {
+	public @NotNull String getLanguageKey(int meta) {
 		return super.getLanguageKey(meta) + "." + this.fromMetadata(meta).colorID;
 	}
 
-	@Override
-	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int meta, TileEntity tileEntity) {
-		return new ItemStack[]{new ItemStack(this.block.getMaterial() == Material.wood ? Blocks.TRAPDOOR_PLANKS_PAINTED : DyablesBlocks.GLASS_TRAPDOOR_PAINTED, 1, (meta >> 4 & 15) << 4)};
+	public ItemStack[] getBreakResult(@NotNull World world, @NotNull EnumDropCause dropCause, int data, @Nullable TileEntity tileEntity) {
+		return new ItemStack[]{new ItemStack(this.material == Materials.WOOD ? Blocks.TRAPDOOR_PLANKS_PAINTED : DyablesBlocks.GLASS_TRAPDOOR_PAINTED, 1, (data >> BlockLogicTrapDoor.MASK_OPEN & DyeColor.MASK_COLOR) << BlockLogicTrapDoor.MASK_OPEN)};
 	}
 
-	@Override
-	public DyeColor fromMetadata(int meta) {
-		return DyeColor.colorFromBlockMeta(meta >> 4 & 15);
+	public @NotNull DyeColor fromMetadata(int meta) {
+		return DyeColor.colorFromBlockMeta(meta >> BlockLogicTrapDoor.MASK_OPEN & DyeColor.MASK_COLOR);
 	}
 
-	@Override
-	public int toMetadata(DyeColor color) {
-		return color.blockMeta << 4;
+	public int toMetadata(@NotNull DyeColor color) {
+		return color.blockMeta << BlockLogicTrapDoor.MASK_OPEN;
 	}
 
-	@Override
 	public int stripColorFromMetadata(int meta) {
-		return meta & 15;
+		return meta & DyeColor.MASK_COLOR;
 	}
 
-	@Override
-	public void removeDye(World world, int x, int y, int z) {
-		int meta = world.getBlockMetadata(x, y, z);
-		world.setBlockAndMetadataWithNotify(x, y, z, this.block.getMaterial() == Material.wood ? Blocks.TRAPDOOR_PLANKS_OAK.id() : DyablesBlocks.GLASS_TRAPDOOR_PAINTED.id(), meta & 15);
+	public void removeDye(World world, @NotNull TilePosc tilePos) {
+		int meta = world.getBlockData(tilePos);
+		world.setBlockTypeDataNotify(tilePos, this.material == Materials.WOOD ? Blocks.TRAPDOOR_PLANKS_OAK : Blocks.TRAPDOOR_GLASS, meta & DyeColor.MASK_COLOR);
 	}
 }

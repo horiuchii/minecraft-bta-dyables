@@ -1,6 +1,7 @@
 package horiuchi.dyables;
 
 import net.minecraft.core.block.Block;
+import net.minecraft.core.block.BlockLogicTrapDoor;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.data.registry.Registries;
 import net.minecraft.core.data.registry.recipe.RecipeSymbol;
@@ -42,20 +43,20 @@ public class DyablesRecipies {
 		);
 	}
 
-	private static void registerItemDyeRecipes(String recipeKey, String groupName, Item itemDyed, Item itemUndyed, boolean useItemMeta)
+	private static void registerItemDyeRecipes(String recipeKey, String groupName, Item itemDyed, Item itemUndyed, boolean useWhiteMeta)
 	{
 		Registries.RECIPES.addCustomRecipe(
 			MOD_ID + ":workbench/" + recipeKey + "_dyeing",
 			new RecipeEntryDyeing(
 				new RecipeSymbol(MOD_ID + ":" + groupName),
-				itemDyed.getDefaultStack(), false, useItemMeta
+				itemDyed.getDefaultStack(), false, true
 			)
 		);
 		Registries.RECIPES.addCustomRecipe(
 			MOD_ID + ":workbench/" + recipeKey + "_undyeing",
 			new RecipeEntryUndyeing(
 				new RecipeSymbol(MOD_ID + ":" + groupName),
-				itemUndyed.getDefaultStack()
+				useWhiteMeta ? new ItemStack(itemUndyed, 1, DyeColor.WHITE.itemMeta) : itemUndyed.getDefaultStack()
 			)
 		);
 	}
@@ -80,7 +81,7 @@ public class DyablesRecipies {
 			workbenches.add(new ItemStack(DyablesBlocks.WORKBENCH_PAINTED, 1, c.blockMeta));
 			glass.add(new ItemStack(DyablesBlocks.GLASS_PAINTED, 1, c.blockMeta));
 			glassDoors.add(new ItemStack(DyablesItems.DOOR_GLASS_PAINTED, 1, c.itemMeta));
-			glassTrapdoors.add(new ItemStack(DyablesBlocks.GLASS_TRAPDOOR_PAINTED, 1, c.blockMeta << 4));
+			glassTrapdoors.add(new ItemStack(DyablesBlocks.GLASS_TRAPDOOR_PAINTED, 1, c.blockMeta << BlockLogicTrapDoor.MASK_OPEN));
 			beds.add(new ItemStack(Items.BED, 1, c.itemMeta));
 			seats.add(new ItemStack(Items.SEAT, 1, c.itemMeta));
 		}
@@ -100,16 +101,18 @@ public class DyablesRecipies {
 
 		RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("bookshelf");
 		RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("workbench");
+		RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("bed");
+		RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("seat");
 
 		// create dying & undying recipes
 
 		registerBlockDyeRecipes("bookshelf", "bookshelves", DyablesBlocks.BOOKSHELF_PLANKS_OAK_PAINTED, Blocks.BOOKSHELF_PLANKS_OAK, false);
 		registerBlockDyeRecipes("workbench", "workbench", DyablesBlocks.WORKBENCH_PAINTED, Blocks.WORKBENCH, false);
 		registerBlockDyeRecipes("glass", "glass", DyablesBlocks.GLASS_PAINTED, Blocks.GLASS, false);
-		registerItemDyeRecipes("glass_door", "glass_doors", DyablesItems.DOOR_GLASS_PAINTED, Items.DOOR_GLASS, true);
+		registerItemDyeRecipes("glass_door", "glass_doors", DyablesItems.DOOR_GLASS_PAINTED, Items.DOOR_GLASS, false);
 		registerBlockDyeRecipes("glass_trapdoor", "glass_trapdoors", DyablesBlocks.GLASS_TRAPDOOR_PAINTED, Blocks.TRAPDOOR_GLASS, true);
-		registerItemDyeRecipes("bed", "beds", Items.BED, Items.BED, false);
-		registerItemDyeRecipes("seat", "seats", Items.SEAT, Items.SEAT, false);
+		registerItemDyeRecipes("bed", "beds", Items.BED, Items.BED, true);
+		registerItemDyeRecipes("seat", "seats", Items.SEAT, Items.SEAT, true);
 
 		RecipeBuilder.Shaped(MOD_ID)
 			.setShape("xx","xx")
@@ -120,9 +123,20 @@ public class DyablesRecipies {
 			.addInput('x', Blocks.PLANKS_OAK)
 			.addInput('p', Items.BOOK)
 			.create("bookshelf", new ItemStack(Blocks.BOOKSHELF_PLANKS_OAK, 1));
+		RecipeBuilder.Shaped(MOD_ID)
+			.setShape("###","X X")
+			.addInput('#', Items.CLOTH)
+			.addInput('X', "minecraft:planks")
+			.create("seat", new ItemStack(Items.SEAT, 1, DyeColor.CYAN.itemMeta));
 
 		for (DyeColor c : DyeColor.itemOrderedColors())
 		{
+			RecipeBuilder.Shaped(MOD_ID)
+				.setShape("CCW","PPP")
+				.addInput('C', Items.CLOTH)
+				.addInput('W', Blocks.WOOL, c.blockMeta)
+				.addInput('P', "minecraft:planks")
+				.create(colorFromBlockMeta(c.itemMeta).colorID + "_bed", new ItemStack(Items.BED, 1, c.itemMeta));
 			RecipeBuilder.Shaped(MOD_ID)
 				.setShape("xx","xx")
 				.addInput('x', Blocks.PLANKS_OAK_PAINTED, c.itemMeta)
@@ -139,7 +153,7 @@ public class DyablesRecipies {
 			RecipeBuilder.Shaped(MOD_ID)
 				.setShape("xxx")
 				.addInput('x', DyablesBlocks.GLASS_PAINTED, c.blockMeta)
-				.create(colorFromItemMeta(c.itemMeta).colorID + "_glass_trapdoor", new ItemStack(DyablesBlocks.GLASS_TRAPDOOR_PAINTED, 1, c.blockMeta << 4));
+				.create(colorFromItemMeta(c.itemMeta).colorID + "_glass_trapdoor", new ItemStack(DyablesBlocks.GLASS_TRAPDOOR_PAINTED, 1, c.blockMeta << BlockLogicTrapDoor.MASK_OPEN));
 		}
 	}
 }

@@ -1,0 +1,11 @@
+{
+	"parent": "minecraft:block/cube_bottom_top",
+	"textures": {
+		"top": "dyables:block/workbench/lime/top",
+		"bottom": "minecraft:block/planks/lime",
+		"north": "dyables:block/workbench/lime/front",
+		"south": "dyables:block/workbench/lime/front",
+		"west": "dyables:block/workbench/lime/side",
+		"east": "dyables:block/workbench/lime/side"
+	}
+}

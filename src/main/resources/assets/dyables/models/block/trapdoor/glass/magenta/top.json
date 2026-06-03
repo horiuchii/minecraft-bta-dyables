@@ -1,0 +1,8 @@
+{
+	"renderlayer": 1,
+	"parent": "minecraft:block/trapdoor/top",
+	"textures": {
+		"texture": "dyables:block/glass/magenta/none",
+		"side": "dyables:block/trapdoor/glass_magenta_side"
+	}
+}

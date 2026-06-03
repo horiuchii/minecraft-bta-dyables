@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/cube_column",
+	"textures": {
+		"end": "minecraft:block/planks/cyan",
+		"side": "dyables:block/bookshelf/side_cyan"
+	}
+}
