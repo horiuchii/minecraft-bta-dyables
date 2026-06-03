@@ -17,7 +17,7 @@ public class BlockLogicBookshelfMixin extends BlockLogic implements IPaintable {
 
 	@Override
 	public void setColor(@NotNull World world, @NotNull TilePosc tilePosc, @NotNull DyeColor dyeColor) {
-		world.setBlockType(tilePosc, DyablesBlocks.WORKBENCH_PAINTED);
-		(DyablesBlocks.WORKBENCH_PAINTED.getLogic()).setColor(world, tilePosc, dyeColor);
+		world.setBlockType(tilePosc, DyablesBlocks.BOOKSHELF_PLANKS_OAK_PAINTED);
+		(DyablesBlocks.BOOKSHELF_PLANKS_OAK_PAINTED.getLogic()).setColor(world, tilePosc, dyeColor);
 	}
 }
