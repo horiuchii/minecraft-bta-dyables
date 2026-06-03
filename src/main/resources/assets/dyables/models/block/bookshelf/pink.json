@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/cube_column",
+	"textures": {
+		"end": "minecraft:block/planks/pink",
+		"side": "dyables:block/bookshelf/side_pink"
+	}
+}

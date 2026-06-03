@@ -1,56 +1,35 @@
 package horiuchi.dyables.mixin;
 
-import net.minecraft.core.block.Blocks;
+import net.minecraft.core.block.Block;
 import net.minecraft.core.entity.player.Player;
-import net.minecraft.core.enums.EnumBlockSoundEffectType;
-import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemBed;
+import net.minecraft.core.item.ItemPlaceablePair;
 import net.minecraft.core.item.ItemStack;
+import net.minecraft.core.util.collection.NamespaceID;
+import net.minecraft.core.util.helper.DyeColor;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ItemBed.class)
-public class ItemBedMixin extends Item {
-	public ItemBedMixin(String name, String namespaceId, int id) {
-		super(name, namespaceId, id);
+public abstract class ItemBedMixin extends ItemPlaceablePair {
+	public ItemBedMixin(@NotNull NamespaceID namespaceId, @NotNull String translationKey, int id, @NotNull Block<?> blockA, @NotNull Block<?> blockB) {
+		super(namespaceId, translationKey, id, blockA, blockB);
 	}
 
-	@Override
-	public boolean onUseItemOnBlock(ItemStack itemstack, Player entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
-		if (!world.canPlaceInsideBlock(blockX, blockY, blockZ)) {
-			blockX += side.getOffsetX();
-			blockY += side.getOffsetY();
-			blockZ += side.getOffsetZ();
-		}
+	public @NotNull String getLanguageKey(@NotNull ItemStack selfStack) {
+		return super.getKey() + "." + DyeColor.colorFromItemMeta(selfStack.getMetadata()).colorID;
+	}
 
-		int i1 = entityplayer.getHorizontalPlacementDirection(null).getOpposite().getHorizontalIndex();
-		byte byte0 = 0;
-		byte byte1 = 0;
-		if (i1 == 0) {
-			byte1 = 1;
-		}
-
-		if (i1 == 1) {
-			byte0 = -1;
-		}
-
-		if (i1 == 2) {
-			byte1 = -1;
-		}
-
-		if (i1 == 3) {
-			byte0 = 1;
-		}
-
-		if (world.isAirBlock(blockX, blockY, blockZ) && world.isAirBlock(blockX + byte0, blockY, blockZ + byte1) && world.canPlaceOnSurfaceOfBlock(blockX, blockY - 1, blockZ) && world.canPlaceOnSurfaceOfBlock(blockX + byte0, blockY - 1, blockZ + byte1) && world.canBlockBePlacedAt(Blocks.BED.id(), blockX, blockY, blockZ, false, side) && itemstack.consumeItem(entityplayer)) {
-			world.playBlockSoundEffect(entityplayer, (float)blockX + 0.5F, (float)blockY + 0.5F, (float)blockZ + 0.5F, Blocks.BED, EnumBlockSoundEffectType.PLACE);
-			int metaColor = (itemstack.getMetadata() & 0x0F) << 4;
-			world.setBlockAndMetadataWithNotify(blockX, blockY, blockZ, Blocks.BED.id(), i1 + metaColor);
-			world.setBlockAndMetadataWithNotify(blockX + byte0, blockY, blockZ + byte1, Blocks.BED.id(), i1 + 8 + metaColor);
-			return true;
-		} else {
-			return false;
-		}
+	@Inject(method = "getPlacement", at = @At("RETURN"))
+	public void setBedColor(ItemStack selfStack, World world, Player player, TilePosc blockPos, Side side, double xHit, double yHit, ItemPlaceablePair.PlacementResult result, CallbackInfoReturnable<ItemPlaceablePair.PlacementResult> cir) {
+		result.dataA |= DyeColor.colorFromItemMeta(selfStack.getMetadata()).blockMeta << 4 & 0b11110000;
+		result.dataB |= DyeColor.colorFromItemMeta(selfStack.getMetadata()).blockMeta << 4 & 0b11110000;
 	}
 }

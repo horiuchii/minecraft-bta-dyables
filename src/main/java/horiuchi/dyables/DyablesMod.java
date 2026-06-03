@@ -3,17 +3,28 @@ package horiuchi.dyables;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import turniplabs.halplibe.helper.CreativeHelper;
+import turniplabs.halplibe.HalpLibe;
 import turniplabs.halplibe.util.GameStartEntrypoint;
 import turniplabs.halplibe.util.RecipeEntrypoint;
 
-public class DyablesMod implements ModInitializer, RecipeEntrypoint, GameStartEntrypoint {
-    public static final String MOD_ID = "dyables";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-    @Override
-    public void onInitialize() {
-		LOGGER.info("Dyables Mod initialized.");
-    }
+public class DyablesMod implements ModInitializer, GameStartEntrypoint, RecipeEntrypoint {
+	public static final String MOD_ID = HalpLibe.registerMod("dyables", true);
+	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
+	@Override
+	public void onInitialize() {
+		LOGGER.info("Extra Dyables initialized.");
+	}
+
+	@Override
+	public void beforeGameStart() {
+		DyablesBlocks.init();
+		DyablesItems.init();
+	}
+
+	public void afterGameStart() {
+
+	}
 
 	@Override
 	public void onRecipesReady() {
@@ -24,15 +35,4 @@ public class DyablesMod implements ModInitializer, RecipeEntrypoint, GameStartEn
 	public void initNamespaces() {
 		DyablesRecipies.initializeNamespaces();
 	}
-
-	@Override
-	public void beforeGameStart() {
-		DyablesBlocks.init();
-		DyablesItems.init();
-	}
-
-	public void afterGameStart() {
-		CreativeHelper.setPriority(DyablesBlocks.WORKBENCH_PAINTED.getLogic(), 1, 1);
-	}
 }
-

@@ -1,26 +1,23 @@
 {
-  "schemaVersion": 1,
-  "id": "dyables",
-  "version": "${version}",
-
-  "name": "Extra Dyables",
-  "description": "Adds dyed variants to the bookshelf, workbench, glass, seat, and bed.",
-  "authors": [
-    "Horiuchi"
-  ],
-  "contact": {
-    "homepage": "https://modrinth.com/mod/extra-dyables-bta",
-    "sources": "https://github.com/horiuchii/minecraft-bta-dyables"
-  },
-
+	"schemaVersion": 1,
+	"id": "dyables",
+	"version": "${version}",
+	"name": "Extra Dyables",
+	"description": "Adds dyed variants to the bookshelf, workbench, glass, seat, and bed.",
+	"authors": [
+		"Horiuchi"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/mod/extra-dyables-bta",
+		"sources": "https://github.com/horiuchii/minecraft-bta-dyables"
+	},
 	"icon": "icon.png",
-  "license": "CC0-1.0",
-
-  "environment": "*",
-  "entrypoints": {
-    "main": [
+	"license": "CC0-1.0",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
 			"horiuchi.dyables.DyablesMod"
-    ],
+		],
 		"beforeGameStart": [
 			"horiuchi.dyables.DyablesMod"
 		],
@@ -32,20 +29,17 @@
 		],
 		"initModels": [
 			"horiuchi.dyables.DyablesModels"
-		],
-		"afterBlockInit": [
-			"horiuchi.dyables.DyablesBlocks"
 		]
 	},
-  "mixins": [
-      "dyables.mixins.json"
-  ],
-
-  "depends": {
+	"mixins": [
+		"dyables.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=${fabricloader}",
 		"minecraft": "*",
-    "fabricloader": ">=0.15.5",
-		"halplibe": ">=5.2.4"
+		"java": ">=${java}"
 	},
-  "suggests": {
-  }
+	"suggests": {
+		"modmenu": ">=${modmenu}"
+	}
 }

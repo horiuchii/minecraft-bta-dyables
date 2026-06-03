@@ -1,0 +1,9 @@
+{
+	"parent": "minecraft:block/bed/head",
+	"textures": {
+		"bottom": "minecraft:block/planks/brown",
+		"front": "minecraft:block/bed/head_front",
+		"side": "dyables:block/bed/brown/head_side",
+		"top": "dyables:block/bed/brown/head_top"
+	}
+}
