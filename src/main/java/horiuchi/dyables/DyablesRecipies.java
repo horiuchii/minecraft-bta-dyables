@@ -155,11 +155,11 @@ public class DyablesRecipies {
 			RecipeBuilder.Shaped(MOD_ID)
 				.setShape("xx","xx","xx")
 				.addInput('x', DyablesBlocks.GLASS_PAINTED, c.blockMeta)
-				.create(colorFromItemMeta(c.itemMeta).colorID + "_glass_door", new ItemStack(DyablesItems.DOOR_GLASS_PAINTED, 1, c.itemMeta));
+				.create(colorFromItemMeta(c.itemMeta).colorID + "_glass_door", new ItemStack(DyablesItems.DOOR_GLASS_PAINTED, 2, c.itemMeta));
 			RecipeBuilder.Shaped(MOD_ID)
 				.setShape("xxx")
 				.addInput('x', DyablesBlocks.GLASS_PAINTED, c.blockMeta)
-				.create(colorFromItemMeta(c.itemMeta).colorID + "_glass_trapdoor", new ItemStack(DyablesBlocks.GLASS_TRAPDOOR_PAINTED, 1, c.blockMeta << BlockLogicTrapDoor.MASK_OPEN));
+				.create(colorFromItemMeta(c.itemMeta).colorID + "_glass_trapdoor", new ItemStack(DyablesBlocks.GLASS_TRAPDOOR_PAINTED, 6, c.blockMeta << BlockLogicTrapDoor.MASK_OPEN));
 		}
 	}
 }
