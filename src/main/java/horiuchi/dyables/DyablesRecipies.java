@@ -136,13 +136,13 @@ public class DyablesRecipies {
 				.addInput('#', DyablesBlocks.GLASS_PAINTED, c.blockMeta)
 				.addInput('O', Items.QUARTZ)
 				.addInput('X', Items.DUST_REDSTONE)
-				.create(colorFromBlockMeta(c.itemMeta).colorID + "_lamp", new ItemStack(Blocks.LAMP_IDLE, 4, c.blockMeta));
+				.create(colorFromBlockMeta(c.blockMeta).colorID + "_lamp", new ItemStack(Blocks.LAMP_IDLE, 4, c.blockMeta));
 			RecipeBuilder.Shaped(MOD_ID)
 				.setShape("CCW","PPP")
 				.addInput('C', Items.CLOTH)
 				.addInput('W', Blocks.WOOL, c.blockMeta)
 				.addInput('P', "minecraft:planks")
-				.create(colorFromBlockMeta(c.itemMeta).colorID + "_bed", new ItemStack(Items.BED, 1, c.itemMeta));
+				.create(colorFromBlockMeta(c.blockMeta).colorID + "_bed", new ItemStack(Items.BED, 1, c.itemMeta));
 			RecipeBuilder.Shaped(MOD_ID)
 				.setShape("xx","xx")
 				.addInput('x', Blocks.PLANKS_OAK_PAINTED, c.itemMeta)
