@@ -132,6 +132,12 @@ public class DyablesRecipies {
 		for (DyeColor c : DyeColor.itemOrderedColors())
 		{
 			RecipeBuilder.Shaped(MOD_ID)
+				.setShape("###","#O#","#X#")
+				.addInput('#', DyablesBlocks.GLASS_PAINTED, c.blockMeta)
+				.addInput('O', Items.QUARTZ)
+				.addInput('X', Items.DUST_REDSTONE)
+				.create(colorFromBlockMeta(c.itemMeta).colorID + "_lamp", new ItemStack(Blocks.LAMP_IDLE, 4, c.blockMeta));
+			RecipeBuilder.Shaped(MOD_ID)
 				.setShape("CCW","PPP")
 				.addInput('C', Items.CLOTH)
 				.addInput('W', Blocks.WOOL, c.blockMeta)
