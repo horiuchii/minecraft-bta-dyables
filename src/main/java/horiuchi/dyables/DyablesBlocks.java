@@ -8,14 +8,9 @@ import net.minecraft.core.block.BlockLogicDoorPainted;
 import net.minecraft.core.block.BlockLogicTrapDoorPainted;
 import net.minecraft.core.block.material.Materials;
 import net.minecraft.core.block.tag.BlockTags;
-import net.minecraft.core.item.IItemConvertible;
 import net.minecraft.core.sound.BlockSounds;
 import turniplabs.halplibe.helper.BlockBuilder;
-import turniplabs.halplibe.helper.creativeInventory.CreativeInventoryCategory;
-import turniplabs.halplibe.helper.creativeInventory.CreativeInventoryPlacement;
 import turniplabs.halplibe.util.BlockInitEntrypoint;
-
-import java.util.function.Supplier;
 
 import static horiuchi.dyables.DyablesMod.MOD_ID;
 

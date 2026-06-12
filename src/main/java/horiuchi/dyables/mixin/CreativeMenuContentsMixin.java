@@ -1,8 +1,5 @@
 package horiuchi.dyables.mixin;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import horiuchi.dyables.DyablesBlocks;
 import horiuchi.dyables.DyablesItems;
 import net.minecraft.core.block.BlockLogicTrapDoor;
