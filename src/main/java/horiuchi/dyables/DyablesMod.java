@@ -1,6 +1,7 @@
 package horiuchi.dyables;
 
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.core.block.BlockLogicFire;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.crafting.LookupFuelFurnace;
 import org.slf4j.Logger;
@@ -27,6 +28,7 @@ public class DyablesMod implements ModInitializer, GameStartEntrypoint, RecipeEn
 	public void afterGameStart() {
 		LookupFuelFurnace.instance.addFuelEntry(DyablesBlocks.BOOKSHELF_PLANKS_OAK_PAINTED.id(), 300);
 		LookupFuelFurnace.instance.addFuelEntry(DyablesBlocks.WORKBENCH_PAINTED.id(), 300);
+		BlockLogicFire.setFlammable(DyablesBlocks.BOOKSHELF_PLANKS_OAK_PAINTED, 30, 20);
 	}
 
 	@Override
