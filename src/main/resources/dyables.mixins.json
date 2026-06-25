@@ -22,6 +22,7 @@
   ],
   "client": [
     "BlockModelDispatcherMixin",
-    "BlockModelGenericBedMixin"
+    "BlockModelGenericBedMixin",
+    "ScreenAchievementsMixin"
   ]
 }
