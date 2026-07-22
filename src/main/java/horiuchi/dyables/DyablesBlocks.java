@@ -10,11 +10,10 @@ import net.minecraft.core.block.material.Materials;
 import net.minecraft.core.block.tag.BlockTags;
 import net.minecraft.core.sound.BlockSounds;
 import turniplabs.halplibe.helper.BlockBuilder;
-import turniplabs.halplibe.util.BlockInitEntrypoint;
 
 import static horiuchi.dyables.DyablesMod.MOD_ID;
 
-public class DyablesBlocks implements BlockInitEntrypoint {
+public class DyablesBlocks {
 	private static int BLOCK_IDS_START = 2100;
 
 	public static Block<BlockLogicBookshelfPainted> BOOKSHELF_PLANKS_OAK_PAINTED;
@@ -25,11 +24,6 @@ public class DyablesBlocks implements BlockInitEntrypoint {
 	public static Block<BlockLogicWorkbenchPainted> WORKBENCH_PAINTED;
 
 	private static boolean hasInit = false;
-
-	@Override
-	public void afterBlockInit() {
-		init();
-	}
 
 	public static void init() {
 		if (hasInit)

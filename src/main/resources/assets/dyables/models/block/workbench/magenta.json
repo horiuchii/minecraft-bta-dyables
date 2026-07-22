@@ -3,9 +3,9 @@
 	"textures": {
 		"top": "dyables:block/workbench/magenta/top",
 		"bottom": "minecraft:block/planks/magenta",
-		"north": "dyables:block/workbench/magenta/front",
-		"south": "dyables:block/workbench/magenta/front",
-		"west": "dyables:block/workbench/magenta/side",
-		"east": "dyables:block/workbench/magenta/side"
+		"north": "dyables:block/workbench/magenta/side",
+		"south": "dyables:block/workbench/magenta/side",
+		"west": "dyables:block/workbench/magenta/front",
+		"east": "dyables:block/workbench/magenta/front"
 	}
 }

@@ -17,18 +17,6 @@
 	"entrypoints": {
 		"main": [
 			"horiuchi.dyables.DyablesMod"
-		],
-		"beforeGameStart": [
-			"horiuchi.dyables.DyablesMod"
-		],
-		"afterGameStart": [
-			"horiuchi.dyables.DyablesMod"
-		],
-		"recipesReady": [
-			"horiuchi.dyables.DyablesMod"
-		],
-		"initModels": [
-			"horiuchi.dyables.DyablesModels"
 		]
 	},
 	"mixins": [

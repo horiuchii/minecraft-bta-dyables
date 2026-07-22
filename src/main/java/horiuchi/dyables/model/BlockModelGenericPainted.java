@@ -20,10 +20,6 @@ public class BlockModelGenericPainted<T extends BlockLogic> extends BlockModelGe
 		super(block, staticModel);
 		this.rootKey = rootKey;
 
-		initData();
-	}
-
-	private void initData() {
 		for(DyeColor c : DyeColor.blockOrderedColors()) {
 			this.models[c.blockMeta] = BlockModelDispatcher.loadDataModel(this.rootKey + c.colorID).asModel();
 		}

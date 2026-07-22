@@ -30,7 +30,7 @@ public class BlockLogicWorkbenchPainted extends BlockLogicWorkbench implements I
 	}
 
 	public ItemStack[] getBreakResult(@NotNull World world, @NotNull EnumDropCause dropCause, int data, @Nullable TileEntity tileEntity) {
-		return new ItemStack[]{new ItemStack(this, 1, data)};
+		return new ItemStack[]{new ItemStack(this, 1, data & DyeColor.MASK_COLOR)};
 	}
 
 	public @NotNull DyeColor fromMetadata(int meta) {
@@ -46,10 +46,12 @@ public class BlockLogicWorkbenchPainted extends BlockLogicWorkbench implements I
 	}
 
 	public void setColor(@NotNull World world, @NotNull TilePosc tilePos, @NotNull DyeColor color) {
-		world.setBlockDataNotify(tilePos, color.blockMeta);
+		int data = world.getBlockData(tilePos);
+		world.setBlockDataNotify(tilePos, data & ~DyeColor.MASK_COLOR | color.blockMeta & DyeColor.MASK_COLOR);
 	}
 
 	public void removeDye(@NotNull World world, @NotNull TilePosc tilePos) {
-		world.setBlockTypeNotify(tilePos, Blocks.WORKBENCH);
+		int data = world.getBlockData(tilePos);
+		world.setBlockTypeDataNotify(tilePos, Blocks.WORKBENCH, data & ~DyeColor.MASK_COLOR);
 	}
 }

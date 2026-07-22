@@ -3,9 +3,9 @@
 	"textures": {
 		"top": "dyables:block/workbench/cyan/top",
 		"bottom": "minecraft:block/planks/cyan",
-		"north": "dyables:block/workbench/cyan/front",
-		"south": "dyables:block/workbench/cyan/front",
-		"west": "dyables:block/workbench/cyan/side",
-		"east": "dyables:block/workbench/cyan/side"
+		"north": "dyables:block/workbench/cyan/side",
+		"south": "dyables:block/workbench/cyan/side",
+		"west": "dyables:block/workbench/cyan/front",
+		"east": "dyables:block/workbench/cyan/front"
 	}
 }
