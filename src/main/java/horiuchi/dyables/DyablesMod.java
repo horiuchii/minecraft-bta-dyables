@@ -20,8 +20,11 @@ public class DyablesMod implements ModInitializer {
 		CommonEvents.AFTER_GAME_START.listen(Key.of(MOD_ID), this::afterGameStart);
 		CommonEvents.RECIPES_READY.listen(Key.of(MOD_ID), this::onRecipesReady);
 		CommonEvents.RECIPES_NAMESPACE_INIT.listen(Key.of(MOD_ID), this::initNamespaces);
-		ClientEvents.BLOCK_MODEL_RELOAD.listen(Key.of(MOD_ID), (t) -> new DyablesModels().initBlockModels(t));
-		ClientEvents.ITEM_MODEL_RELOAD.listen(Key.of(MOD_ID), (t) -> new DyablesModels().initItemModels(t));
+		if (HalpLibe.isClient)
+		{
+			ClientEvents.BLOCK_MODEL_RELOAD.listen(Key.of(MOD_ID), (t) -> new DyablesModels().initBlockModels(t));
+			ClientEvents.ITEM_MODEL_RELOAD.listen(Key.of(MOD_ID), (t) -> new DyablesModels().initItemModels(t));
+		}
 		LOGGER.info("Extra Dyables initialized.");
 	}
 
