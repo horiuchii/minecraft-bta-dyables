@@ -18,7 +18,8 @@
     "CreativeMenuContentsMixin",
     "ItemBedMixin",
     "ItemPlaceableMixin",
-    "MenuCraftingMixin"
+    "MenuCraftingMixin",
+    "SlotResultMixin"
   ],
   "client": [
     "BlockModelDispatcherMixin",
