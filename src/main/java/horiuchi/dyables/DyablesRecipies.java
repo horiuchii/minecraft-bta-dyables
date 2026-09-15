@@ -157,7 +157,7 @@ public class DyablesRecipies {
 				.addInput('x', DyablesBlocks.GLASS_PAINTED, c.blockMeta)
 				.create(colorFromItemMeta(c.itemMeta).colorID + "_glass_door", new ItemStack(DyablesItems.DOOR_GLASS_PAINTED, 2, c.itemMeta));
 			RecipeBuilder.Shaped(MOD_ID)
-				.setShape("xxx")
+				.setShape("xxx","xxx")
 				.addInput('x', DyablesBlocks.GLASS_PAINTED, c.blockMeta)
 				.create(colorFromItemMeta(c.itemMeta).colorID + "_glass_trapdoor", new ItemStack(DyablesBlocks.GLASS_TRAPDOOR_PAINTED, 6, c.blockMeta << BlockLogicTrapDoor.MASK_OPEN));
 		}
